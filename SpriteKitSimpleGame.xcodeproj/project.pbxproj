@@ -116,7 +116,7 @@
 				TargetAttributes = {
 					35F7AA361D9EE88E009C4036 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = KFCNEC27GU;
+						DevelopmentTeam = RR6FUB79Y4;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -285,10 +285,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = KFCNEC27GU;
+				DEVELOPMENT_TEAM = RR6FUB79Y4;
 				INFOPLIST_FILE = SpriteKitSimpleGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.SpriteKitSimpleGame;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.stoppler.SpriteKitSimpleGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -298,10 +298,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = KFCNEC27GU;
+				DEVELOPMENT_TEAM = RR6FUB79Y4;
 				INFOPLIST_FILE = SpriteKitSimpleGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.SpriteKitSimpleGame;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.stoppler.SpriteKitSimpleGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
