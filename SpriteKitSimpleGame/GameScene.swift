@@ -30,9 +30,10 @@ struct PhysicsCategory {
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
   
-  // 1
-  let player = SKSpriteNode(imageNamed: "ghost")
+    // 1
+    let player = SKSpriteNode(imageNamed: "ghost")
     var count = 0;
+    var inAir = false;
 
   override func didMove(to view: SKView) {
     // 2
@@ -101,7 +102,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     addChild(flashlight)
    
     // Determine speed of the monster
-    let actualDuration = random(min: CGFloat(1.5), max: CGFloat(3.5))
+    let actualDuration = random(min: CGFloat(2), max: CGFloat(3))
    
     // Create the actions
     let actionMove = SKAction.move(to: CGPoint(x: -flashlight.size.width/2, y: actualY), duration: TimeInterval(actualDuration))
@@ -118,19 +119,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     _ = touch.location(in: self)
  
-    
-
-        // move up 20
-        let jumpUpAction = SKAction.moveBy(x:0, y:120, duration:0.25)
-        // move down 20
-        let jumpDownAction = SKAction.moveBy(x:0 , y:-120, duration:0.25)
-        // sequence of move yup then down
-        let jumpSequence = SKAction.sequence([jumpUpAction, jumpDownAction])
-        // make player run sequence
-        
-        player.run(_:jumpSequence)
-
+    jump()
 }
+    
+    func canJump() -> Bool {
+        if player.position.y < size.height * 0.17 {
+            return true
+        }
+        
+        return false
+    }
+    
+    func jump() {
+        if canJump() {
+            // move up 20
+            let jumpUpAction = SKAction.moveBy(x:0, y:120, duration:0.25)
+            // move down 20
+            let jumpDownAction = SKAction.moveBy(x:0 , y:-120, duration:0.25)
+            // sequence of move yup then down
+            let jumpSequence = SKAction.sequence([jumpUpAction, jumpDownAction])
+            // make player run sequence
+            
+            player.run(_:jumpSequence)
+        }
+    }
+    
   
   func ghostDidCollideWithFlashlight(ghost: SKSpriteNode, flashlight: SKSpriteNode) {
     print("Ghost collided with light")
