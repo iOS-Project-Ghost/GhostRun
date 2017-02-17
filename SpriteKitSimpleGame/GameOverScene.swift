@@ -16,13 +16,13 @@ class GameOverScene: SKScene {
     super.init(size: size)
  
     // 1
-    backgroundColor = SKColor.white
+    backgroundColor = SKColor.yellow
  
     // 2
-    let message = won ? "You Won!" : "You Lose :["
+    let message = won ? "You Won!" : "SCORE: ...you didn't count?"
  
     // 3
-    let label = SKLabelNode(fontNamed: "Chalkduster")
+    let label = SKLabelNode(fontNamed: "gothic")
     label.text = message
     label.fontSize = 40
     label.fontColor = SKColor.black
