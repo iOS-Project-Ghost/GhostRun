@@ -52,7 +52,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // 4
     addChild(player)
     
-    physicsWorld.gravity = CGVector.zero
+    physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0)
     physicsWorld.contactDelegate = self
     
     run(SKAction.repeatForever(
@@ -84,7 +84,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
    
     flashlight.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: flashlight.size.width - 195,
                                                                height: flashlight.size.height - 150))
-    flashlight.setScale(0.1)
+    flashlight.setScale(0.08)
     flashlight.physicsBody?.isDynamic = true // 2
     flashlight.physicsBody?.categoryBitMask = PhysicsCategory.Flashlight // 3
     flashlight.physicsBody?.contactTestBitMask = PhysicsCategory.Ghost // 4
@@ -123,7 +123,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 }
     
     func canJump() -> Bool {
-        if player.position.y < size.height * 0.17 {
+        if player.position.y < size.height * 0.166 {
             return true
         }
         
@@ -133,28 +133,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func jump() {
         if canJump() {
             // move up 20
-            let jumpUpAction = SKAction.moveBy(x:0, y:120, duration:0.25)
+            let jumpUpAction = SKAction.moveBy(x:5, y:145, duration:0.325)
             // move down 20
-            let jumpDownAction = SKAction.moveBy(x:0 , y:-120, duration:0.25)
+            let jumpDownAction = SKAction.moveBy(x:-5 , y:-145, duration:0.425)
             // sequence of move yup then down
             let jumpSequence = SKAction.sequence([jumpUpAction, jumpDownAction])
             // make player run sequence
             
+            //player.physicsBody!.applyImpulse(CGVector(dx: 0.0, dy: 2.0))
+            //player.physicsBody!.applyForce(CGVector(dx: 0.0, dy: 0.0))
             player.run(_:jumpSequence)
         }
     }
-    
   
   func ghostDidCollideWithFlashlight(ghost: SKSpriteNode, flashlight: SKSpriteNode) {
-    print("Ghost collided with light")
-    
+      print("Ghost collided with light")
       let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
       let gameOverScene = GameOverScene(size: self.size, won: false)
       self.view?.presentScene(gameOverScene, transition: reveal)
   }
   
  func didBegin(_ contact: SKPhysicsContact) {
-
     // 1
    var firstBody: SKPhysicsBody
     var secondBody: SKPhysicsBody
@@ -165,7 +164,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       firstBody = contact.bodyB
       secondBody = contact.bodyA
     }
-   
     // 2
     if ((firstBody.categoryBitMask & PhysicsCategory.Ghost != 0) &&
         (secondBody.categoryBitMask & PhysicsCategory.Flashlight != 0)) {
@@ -174,7 +172,5 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ghostDidCollideWithFlashlight(ghost: ghost, flashlight: flashlight)
       }
     }
-   
   }
-
 }
