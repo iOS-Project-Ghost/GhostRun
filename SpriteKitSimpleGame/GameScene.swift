@@ -32,6 +32,7 @@ var localHighScore = 0;
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var highscoreLabel = SKLabelNode(fontNamed: "ArialMT")
+    var background = SKSpriteNode(imageNamed: "spookyBackground")
     // Stores the highscore in here so that when you exit, it saves the high score
     let userDefaults = UserDefaults.standard
     
@@ -88,6 +89,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         SKAction.wait(forDuration: 2)
       ])
     ))
+    // Configure the background of the game
+    background.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
+    if (background.parent == nil){
+        addChild(background)
+    }
     
     //music for the game
     /*let backgroundMusic = SKAudioNode(fileNamed: "background-music-aac.caf")
