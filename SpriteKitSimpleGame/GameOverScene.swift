@@ -19,7 +19,10 @@ class GameOverScene: SKScene {
     backgroundColor = SKColor.yellow
  
     // 2
-    let message = won ? "You Won!" : "SCORE: ...you didn't count?"
+    // Show your score
+    let message = won ? "You Won!" : "SCORE: ...\(numberJumpedOver) you didn't count?"
+    // Reset the counter
+    numberJumpedOver = 0
  
     // 3
     let label = SKLabelNode(fontNamed: "gothic")
