@@ -40,6 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let player = SKSpriteNode(imageNamed: "ghost")
     var numberCreated = 0;
     var inAir = false;
+    
 
   override func didMove(to view: SKView) {
     if userDefaults.value(forKey: "highscore") != nil {
@@ -55,9 +56,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     highscoreLabel.fontColor = .white
     highscoreLabel.position = CGPoint(x:frame.midX, y:frame.maxY - 35)
     // If the label doesn't exist, add it
+    
     if (highscoreLabel.parent == nil) {
         addChild(highscoreLabel)
     }
+    
     
     // 2
     backgroundColor = SKColor.darkGray
@@ -92,6 +95,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Configure the background of the game
     background.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
     if (background.parent == nil){
+        background.zPosition = -1.0
         addChild(background)
     }
     
